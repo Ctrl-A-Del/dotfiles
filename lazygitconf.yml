@@ -1,0 +1,24 @@
+  os:
+    openCommand: 'code -rg {{filename}}'
+  keybinding:
+    universal:
+      nextTab: '<tab>'
+  gui:
+    theme:
+      selectedLineBgColor:
+        - reverse
+      selectedRangeBgColor:
+        - reverse
+  customCommands:
+  - key: 'c'
+    prompts:
+      - type: 'input'
+        title: 'Checkout branch'
+        initialValue: 'Do you want to check out {{.SelectedRemoteBranch.FullName}}?'
+    command: 'git checkout -t  {{.SelectedRemoteBranch.FullName}}'
+    context: 'remoteBranches'
+    description: 'checkout --track'
+    loadingText: 'Checkout...'
+  git:
+    branchLogCmd: "git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=medium --oneline --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset) %C(dim white)- %an%C(reset)%n''          %C(white)%s%C(reset)' {{branchName}} --"
+    allBranchesLogCmd: "git log --graph --color=always --all --abbrev-commit --decorate --date=relative --pretty=medium --oneline --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset) %C(dim white)- %an%C(reset)%n''          %C(white)%s%C(reset)' --"
